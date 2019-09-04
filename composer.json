@@ -1,0 +1,22 @@
+{
+  "name": "algolia/algoliasearch-inventory-magento-2",
+  "description": "Algolia Search Inventory module for Magento 2.3.x and Algolia Search 1.12+ extension",
+  "type": "magento2-module",
+  "license": ["MIT"],
+  "version": "1.11.3",
+  "require": {
+    "php": "~7.0|~7.1|~7.2|~7.3",
+    "magento/framework": "~102.0",
+    "algolia/algoliasearch-client-php": ">=1.27.0 <2.0",
+    "ext-json": "*",
+    "ext-PDO": "*",
+    "ext-mbstring": "*",
+    "ext-dom": "*"
+  },
+  "autoload": {
+    "files": [ "registration.php" ],
+    "psr-4": {
+      "Algolia\\AlgoliaSearchInventory\\": ""
+    }
+  }
+}
