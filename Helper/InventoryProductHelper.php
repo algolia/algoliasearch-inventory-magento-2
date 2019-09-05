@@ -19,7 +19,7 @@ class InventoryProductHelper extends ProductHelper
 
     protected function addStockFilter($products, $storeId)
     {
-        return $products;
+        //void
     }
 
     protected function addMandatoryAttributes($products)
@@ -30,8 +30,6 @@ class InventoryProductHelper extends ProductHelper
             ->addAttributeToSelect('special_to_date')
             ->addAttributeToSelect('visibility')
             ->addAttributeToSelect('status');
-
-        return $products;
     }
 
     public function productIsInStock($product, $storeId)
