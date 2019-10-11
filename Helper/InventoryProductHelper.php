@@ -17,6 +17,13 @@ class InventoryProductHelper extends ProductHelper
         return $customData;
     }
 
+    /**
+     * This method is overriden and left empty to remove the native stock filter behaviour
+     * (from CatalogInventory Helper)
+     *
+     * @param $products
+     * @param $storeId
+     */
     protected function addStockFilter($products, $storeId)
     {
         //void

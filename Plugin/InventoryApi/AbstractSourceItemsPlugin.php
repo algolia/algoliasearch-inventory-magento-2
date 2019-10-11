@@ -33,7 +33,8 @@ abstract class AbstractSourceItemsPlugin
         foreach ($sourceItems as $sourceItem) {
             $sku = $sourceItem->getSku();
             try {
-                $productId = (int)$this->getProductIdsBySkus->execute([$sku])[$sku];
+                $productIdsBySkus = $this->getProductIdsBySkus->execute([$sku]);
+                $productId = (int) $productIdsBySkus[$sku];
                 $productIds[] = $productId;
             } catch (NoSuchEntityException $e) {
                 continue;
