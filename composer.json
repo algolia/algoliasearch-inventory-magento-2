@@ -3,7 +3,7 @@
   "description": "Algolia Search Inventory module for Magento 2.3.x and Algolia Search 1.12+ extension",
   "type": "magento2-module",
   "license": ["MIT"],
-  "version": "1.0.0",
+  "version": "1.0.1",
   "require": {
     "magento/module-inventory-api": "1.*",
     "algolia/algoliasearch-magento-2": ">=1.12.0"  
