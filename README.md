@@ -1,9 +1,9 @@
-Algolia Search Inventory for Magento 2.3.x
+Algolia Search Inventory for Magento 2.3.x and 2.4.x
 ==================
 
 ![Latest version](https://img.shields.io/badge/latest-1.0.0-green.svg)
 
-The module Algolia_AlgoliaSearchInventory has been develop to provide compatibility between Magento 2.3 Inventory feature and Algolia Search 1.12+ extension.
+The module Algolia_AlgoliaSearchInventory has been develop to provide compatibility between Magento 2.4 Inventory feature and Algolia Search 3.x extension.
 
 Installation
 ------------
