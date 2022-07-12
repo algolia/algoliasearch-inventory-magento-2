@@ -2,7 +2,7 @@
 
 ## 1.0.2
 
-- Updated Redme and dependencies
+- Updated Readme and dependencies
 
 ## 1.0.1
 
