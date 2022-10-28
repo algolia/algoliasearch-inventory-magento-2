@@ -5,6 +5,7 @@ Algolia Search Inventory for Magento 2.3.x and 2.4.x
 
 This Algolia_AlgoliaSearchInventory is a community-developed module to provide compatibility between Magento (2.3.x, 2.4.x) Inventory feature and Algolia Search 1.12+ extension. Though Algolia is a contributor to this repository, there is no product roadmap for this module and it’s not aligned with the Algolia/Magento integration product releases.
 
+Note: The MSI module (https://github.com/algolia/algoliasearch-inventory-magento-2) release version >= 1.0.3 is required when the Algolia Search for Magento 2 release version >= 3.9.0 is used.
 
 Installation
 ------------
