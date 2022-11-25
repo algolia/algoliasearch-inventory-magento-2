@@ -10,8 +10,7 @@ class InventoryProductHelper extends ProductHelper
     protected function addInStock($defaultData, $customData, Product $product)
     {
         if (isset($defaultData['in_stock']) === false) {
-            // We don't rely on getStockItem anymore
-            $customData['in_stock'] = 1;
+            $customData['in_stock'] = $this->productIsInStock($product, $product->getStoreId());
         }
 
         return $customData;
