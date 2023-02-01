@@ -7,7 +7,7 @@
     <type name="Magento\InventoryApi\Api\SourceItemsSaveInterface">
         <plugin name="algoliaInventorySourceItemsSave"
             type="Algolia\AlgoliaSearchInventory\Plugin\InventoryApi\SourceItemsSavePlugin"
-            sortOrder="9999"/>
+            sortOrder="9999" disabled="true"/>
     </type>
 
     <type name="Magento\InventoryApi\Api\SourceItemsDeleteInterface">
