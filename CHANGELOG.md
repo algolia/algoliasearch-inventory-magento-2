@@ -1,6 +1,8 @@
 # CHANGE LOG
+## 1.0.4
+- Fixed in_stock status issue
 
-## 1.0.2
+## 1.0.3
 
 - Fixed the compatibility issue with magento version 2.4.5
 
