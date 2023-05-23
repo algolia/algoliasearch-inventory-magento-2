@@ -11,7 +11,6 @@ This Algolia_AlgoliaSearchInventory is a community-developed module to provide c
 |-------------------|---------------------------------------------------------------------------|
 | v1.x              | [<=3.8.1](https://github.com/algolia/algoliasearch-magento-2/releases/tag/3.8.1) |
 | >= v1.0.3            | [3.9.0](https://github.com/algolia/algoliasearch-magento-2/releases/tag/3.9.0)|
-| >= v1.0.4            | [3.10.3](https://github.com/algolia/algoliasearch-magento-2/releases/tag/3.10.3)|
 
 
 Installation
