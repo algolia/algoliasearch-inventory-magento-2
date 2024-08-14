@@ -1,4 +1,8 @@
 # CHANGE LOG
+
+## 1.1.0
+- Fix compatibility with version 3.14.0 of the Algolia_AlgoliaSearch module (thanks @thomas-kl1)
+
 ## 1.0.4
 - Fixed in_stock status issue
 
