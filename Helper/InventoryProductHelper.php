@@ -23,7 +23,7 @@ class InventoryProductHelper extends ProductHelper
      * @param $products
      * @param $storeId
      */
-    protected function addStockFilter($products, $storeId)
+    protected function addStockFilter($products, $storeId): void
     {
         //void
     }
@@ -38,7 +38,7 @@ class InventoryProductHelper extends ProductHelper
             ->addAttributeToSelect('status');
     }
 
-    public function productIsInStock($product, $storeId)
+    public function productIsInStock($product, $storeId): bool
     {
         // Handled in ProductHelperPlugin
         return true;
