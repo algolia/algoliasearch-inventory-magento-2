@@ -28,16 +28,6 @@ class InventoryProductHelper extends ProductHelper
         //void
     }
 
-    protected function addMandatoryAttributes($products): void
-    {
-        /** @var \Magento\Catalog\Model\ResourceModel\Product\Collection $products */
-        $products->addAttributeToSelect('special_price')
-            ->addAttributeToSelect('special_from_date')
-            ->addAttributeToSelect('special_to_date')
-            ->addAttributeToSelect('visibility')
-            ->addAttributeToSelect('status');
-    }
-
     public function productIsInStock($product, $storeId): bool
     {
         // Handled in ProductHelperPlugin
