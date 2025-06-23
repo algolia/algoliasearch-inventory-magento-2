@@ -22,7 +22,6 @@
         />
     </type>
 
-    <preference for="Algolia\AlgoliaSearch\Service\Product\RecordBuilder" type="Algolia\AlgoliaSearchInventory\Service\Product\InventoryProductRecordBuilder" />
-
     <preference for="Algolia\AlgoliaSearch\Helper\Entity\ProductHelper" type="Algolia\AlgoliaSearchInventory\Helper\InventoryProductHelper" />
+    <preference for="Algolia\AlgoliaSearch\Service\Product\RecordBuilder" type="Algolia\AlgoliaSearchInventory\Service\Product\InventoryProductRecordBuilder" />
 </config>
