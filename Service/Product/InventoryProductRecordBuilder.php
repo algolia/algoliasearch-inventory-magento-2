@@ -20,6 +20,9 @@ use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\InventorySalesApi\Api\GetProductSalableQtyInterface;
 use Magento\Store\Model\StoreManagerInterface;
 
+/**
+ * Preference class to modify protected methods
+ */
 class InventoryProductRecordBuilder extends RecordBuilder
 {
     const STOCK_QTY_ATTR = 'stock_qty';

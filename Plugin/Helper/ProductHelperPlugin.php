@@ -8,6 +8,7 @@ use Magento\Catalog\Model\Product;
 use Magento\Framework\App\ResourceConnection;
 use Magento\InventoryIndexer\Model\StockIndexTableNameResolverInterface;
 
+/** @deprecated This plugin has been deprecated and should no longer be used.  */
 class ProductHelperPlugin
 {
     public function __construct(

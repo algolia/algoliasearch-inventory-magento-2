@@ -25,6 +25,9 @@ use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\InventoryCatalog\Model\ResourceModel\AddStockDataToCollection;
 use Magento\Store\Model\StoreManagerInterface;
 
+/**
+ * Preference class to modify protected methods
+ */
 class InventoryProductHelper extends ProductHelper
 {
     public function __construct(
@@ -69,15 +72,6 @@ class InventoryProductHelper extends ProductHelper
         );
     }
 
-    protected function addInStock($defaultData, $customData, Product $product)
-    {
-        if (isset($defaultData['in_stock']) === false) {
-            $customData['in_stock'] = $this->productIsInStock($product, $product->getStoreId());
-        }
-
-        return $customData;
-    }
-
     /**
      * Explicitly apply stock filter from Magento_Inventory module
      */
@@ -92,11 +86,5 @@ class InventoryProductHelper extends ProductHelper
         } catch (LocalizedException $e) {
             $this->logger->error("Error applying MSI stock filter:" . $e->getMessage());
         }
-    }
-
-    public function productIsInStock($product, $storeId): bool
-    {
-        // Handled in ProductHelperPlugin
-        return true;
     }
 }

@@ -16,10 +16,9 @@
             sortOrder="9999"/>
     </type>
 
-    <type name="Algolia\AlgoliaSearch\Helper\Entity\ProductHelper">
-        <plugin name="algoliaInventoryIsInStockFilter"
-            type="Algolia\AlgoliaSearchInventory\Plugin\Helper\ProductHelperPlugin"
-        />
+    <type name="Algolia\AlgoliaSearch\Service\Product\RecordBuilder">
+        <plugin name="algoliaInventoryRecordBuilder"
+                type="Algolia\AlgoliaSearchInventory\Plugin\Service\Product\RecordBuilderPlugin"/>
     </type>
 
     <preference for="Algolia\AlgoliaSearch\Helper\Entity\ProductHelper" type="Algolia\AlgoliaSearchInventory\Helper\InventoryProductHelper" />
