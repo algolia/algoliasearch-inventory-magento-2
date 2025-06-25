@@ -6,7 +6,7 @@
   "version": "1.2.0",
   "require": {
     "magento/module-inventory-api": "1.*",
-    "algolia/algoliasearch-magento-2": "^3.15.0"
+    "algolia/algoliasearch-magento-2": "~3.15.0"
   },
   "autoload": {
     "files": [ "registration.php" ],
