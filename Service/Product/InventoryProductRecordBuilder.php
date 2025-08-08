@@ -26,7 +26,8 @@ use Magento\Store\Model\StoreManagerInterface;
  */
 class InventoryProductRecordBuilder extends RecordBuilder
 {
-    const STOCK_QTY_ATTR = 'stock_qty';
+    const ATTR_STOCK_QTY = 'stock_qty';
+    const ATTR_IN_STOCK = 'in_stock';
 
     public function __construct(
         protected GetProductSalableQtyInterface $salableQty,
@@ -65,13 +66,15 @@ class InventoryProductRecordBuilder extends RecordBuilder
      * @throws LocalizedException
      */
     protected function addStockQty($defaultData, $customData, $additionalAttributes, Product $product) {
-        if (!isset($defaultData[self::STOCK_QTY_ATTR])
-            && $this->isAttributeEnabled($additionalAttributes, self::STOCK_QTY_ATTR)) {
-            $customData[self::STOCK_QTY_ATTR] =
-                (int) $this->salableQty->execute(
-                    $product->getSku(),
-                    $this->stockHelper->getStockId($product->getStoreId())
-                );
+        if (!isset($defaultData[self::ATTR_STOCK_QTY])
+            && $this->isAttributeEnabled($additionalAttributes, self::ATTR_STOCK_QTY)) {
+            $customData[self::ATTR_STOCK_QTY] = !!$customData[self::ATTR_IN_STOCK]
+                 ? (int) $this->salableQty->execute(
+                        $product->getSku(),
+                        $this->stockHelper->getStockId($product->getStoreId())
+                    )
+                : 0 // Avoids error: Can't check requested quantity for products without Source Items support.
+            ;
         }
 
         return $customData;

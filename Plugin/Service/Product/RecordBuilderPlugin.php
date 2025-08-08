@@ -4,6 +4,7 @@ namespace Algolia\AlgoliaSearchInventory\Plugin\Service\Product;
 
 use Algolia\AlgoliaSearch\Service\Product\RecordBuilder;
 use Magento\Catalog\Model\Product;
+use Algolia\AlgoliaSearchInventory\Service\Product\InventoryProductRecordBuilder;
 
 /**
  * Plugin class to modify public methods
@@ -28,8 +29,8 @@ class RecordBuilderPlugin
         Product       $product
     ): mixed
     {
-        if (!isset($defaultData['in_stock'])) {
-            $result['in_stock'] = $builder->productIsInStock($product, $product->getStoreId());
+        if (!isset($defaultData[InventoryProductRecordBuilder::ATTR_IN_STOCK])) {
+            $result[InventoryProductRecordBuilder::ATTR_IN_STOCK] = $builder->productIsInStock($product, $product->getStoreId());
         }
 
         return $result;
