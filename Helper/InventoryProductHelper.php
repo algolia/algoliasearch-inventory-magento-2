@@ -9,6 +9,7 @@ use Algolia\AlgoliaSearch\Logger\DiagnosticsLogger;
 use Algolia\AlgoliaSearch\Service\AlgoliaConnector;
 use Algolia\AlgoliaSearch\Service\IndexNameFetcher;
 use Algolia\AlgoliaSearch\Service\IndexOptionsBuilder;
+use Algolia\AlgoliaSearch\Service\IndexSettingsHandler;
 use Algolia\AlgoliaSearch\Service\Product\FacetBuilder;
 use Algolia\AlgoliaSearch\Service\Product\RecordBuilder as ProductRecordBuilder;
 use Magento\Catalog\Api\Data\ProductInterfaceFactory;
@@ -46,6 +47,7 @@ class InventoryProductHelper extends ProductHelper
         ProductInterfaceFactory            $productFactory,
         ProductRecordBuilder               $productRecordBuilder,
         FacetBuilder                       $facetBuilder,
+        IndexSettingsHandler               $indexSettingsHandler,
     ) {
         parent::__construct(
             $eavConfig,
@@ -63,7 +65,8 @@ class InventoryProductHelper extends ProductHelper
             $replicaManager,
             $productFactory,
             $productRecordBuilder,
-            $facetBuilder
+            $facetBuilder,
+            $indexSettingsHandler
         );
     }
 
