@@ -2,12 +2,13 @@
 
 namespace Algolia\AlgoliaSearchInventory\Service\Product;
 
-use Algolia\AlgoliaSearch\Helper\AlgoliaHelper;
 use Algolia\AlgoliaSearch\Helper\ConfigHelper;
 use Algolia\AlgoliaSearch\Helper\Entity\CategoryHelper;
 use Algolia\AlgoliaSearch\Helper\Entity\Product\PriceManager;
 use Algolia\AlgoliaSearch\Helper\Image as ImageHelper;
 use Algolia\AlgoliaSearch\Logger\DiagnosticsLogger;
+use Algolia\AlgoliaSearch\Service\AlgoliaConnector;
+use Algolia\AlgoliaSearch\Service\Category\RecordBuilder as CategoryRecordBuilder;
 use Algolia\AlgoliaSearch\Service\Product\RecordBuilder;
 use Algolia\AlgoliaSearchInventory\Helper\StockHelper;
 use Magento\Catalog\Model\Product;
@@ -25,7 +26,8 @@ use Magento\Store\Model\StoreManagerInterface;
  */
 class InventoryProductRecordBuilder extends RecordBuilder
 {
-    const STOCK_QTY_ATTR = 'stock_qty';
+    const ATTR_STOCK_QTY = 'stock_qty';
+    const ATTR_IN_STOCK = 'in_stock';
 
     public function __construct(
         protected GetProductSalableQtyInterface $salableQty,
@@ -36,7 +38,8 @@ class InventoryProductRecordBuilder extends RecordBuilder
         StoreManagerInterface                   $storeManager,
         ConfigHelper                            $configHelper,
         CategoryHelper                          $categoryHelper,
-        AlgoliaHelper                           $algoliaHelper,
+        CategoryRecordBuilder                   $categoryRecordBuilder,
+        AlgoliaConnector                        $algoliaConnector,
         ImageHelper                             $imageHelper,
         StockRegistryInterface                  $stockRegistry,
         PriceManager                            $priceManager
@@ -48,7 +51,8 @@ class InventoryProductRecordBuilder extends RecordBuilder
             $storeManager,
             $configHelper,
             $categoryHelper,
-            $algoliaHelper,
+            $categoryRecordBuilder,
+            $algoliaConnector,
             $imageHelper,
             $stockRegistry,
             $priceManager
@@ -62,13 +66,15 @@ class InventoryProductRecordBuilder extends RecordBuilder
      * @throws LocalizedException
      */
     protected function addStockQty($defaultData, $customData, $additionalAttributes, Product $product) {
-        if (!isset($defaultData[self::STOCK_QTY_ATTR])
-            && $this->isAttributeEnabled($additionalAttributes, self::STOCK_QTY_ATTR)) {
-            $customData[self::STOCK_QTY_ATTR] =
-                (int) $this->salableQty->execute(
-                    $product->getSku(),
-                    $this->stockHelper->getStockId($product->getStoreId())
-                );
+        if (!isset($defaultData[self::ATTR_STOCK_QTY])
+            && $this->isAttributeEnabled($additionalAttributes, self::ATTR_STOCK_QTY)) {
+            $customData[self::ATTR_STOCK_QTY] = !!$customData[self::ATTR_IN_STOCK]
+                 ? (int) $this->salableQty->execute(
+                        $product->getSku(),
+                        $this->stockHelper->getStockId($product->getStoreId())
+                    )
+                : 0 // Avoids error: Can't check requested quantity for products without Source Items support.
+            ;
         }
 
         return $customData;

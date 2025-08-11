@@ -3,25 +3,23 @@
 namespace Algolia\AlgoliaSearchInventory\Helper;
 
 use Algolia\AlgoliaSearch\Api\Product\ReplicaManagerInterface;
-use Algolia\AlgoliaSearch\Helper\AlgoliaHelper;
 use Algolia\AlgoliaSearch\Helper\ConfigHelper;
 use Algolia\AlgoliaSearch\Helper\Entity\ProductHelper;
 use Algolia\AlgoliaSearch\Logger\DiagnosticsLogger;
+use Algolia\AlgoliaSearch\Service\AlgoliaConnector;
 use Algolia\AlgoliaSearch\Service\IndexNameFetcher;
+use Algolia\AlgoliaSearch\Service\IndexOptionsBuilder;
+use Algolia\AlgoliaSearch\Service\IndexSettingsHandler;
+use Algolia\AlgoliaSearch\Service\Product\FacetBuilder;
 use Algolia\AlgoliaSearch\Service\Product\RecordBuilder as ProductRecordBuilder;
 use Magento\Catalog\Api\Data\ProductInterfaceFactory;
-use Magento\Catalog\Model\Product;
 use Magento\Catalog\Model\Product\Type;
 use Magento\Catalog\Model\Product\Visibility;
 use Magento\Catalog\Model\ResourceModel\Product\CollectionFactory;
 use Magento\CatalogInventory\Helper\Stock;
-use Magento\Customer\Api\GroupExcludedWebsiteRepositoryInterface;
-use Magento\Customer\Model\ResourceModel\Group\Collection as GroupCollection;
-use Magento\Directory\Model\Currency as CurrencyHelper;
 use Magento\Eav\Model\Config;
 use Magento\Framework\Event\ManagerInterface;
 use Magento\Framework\Exception\LocalizedException;
-use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\InventoryCatalog\Model\ResourceModel\AddStockDataToCollection;
 use Magento\Store\Model\StoreManagerInterface;
 
@@ -31,44 +29,44 @@ use Magento\Store\Model\StoreManagerInterface;
 class InventoryProductHelper extends ProductHelper
 {
     public function __construct(
-        protected AddStockDataToCollection      $addStockDataToCollection,
-        protected StockHelper                   $localStockHelper,
-        Config                                  $eavConfig,
-        ConfigHelper                            $configHelper,
-        AlgoliaHelper                           $algoliaHelper,
-        DiagnosticsLogger                       $logger,
-        StoreManagerInterface                   $storeManager,
-        ManagerInterface                        $eventManager,
-        Visibility                              $visibility,
-        Stock                                   $deprecatedStockHelper,
-        CurrencyHelper                          $currencyManager,
-        Type                                    $productType,
-        CollectionFactory                       $productCollectionFactory,
-        GroupCollection                         $groupCollection,
-        GroupExcludedWebsiteRepositoryInterface $groupExcludedWebsiteRepository,
-        IndexNameFetcher                        $indexNameFetcher,
-        ReplicaManagerInterface                 $replicaManager,
-        ProductInterfaceFactory                 $productFactory,
-        ProductRecordBuilder                    $productRecordBuilder,
+        protected AddStockDataToCollection $addStockDataToCollection,
+        protected StockHelper              $localStockHelper,
+        Config                             $eavConfig,
+        ConfigHelper                       $configHelper,
+        AlgoliaConnector                   $algoliaConnector,
+        IndexOptionsBuilder                $indexOptionsBuilder,
+        DiagnosticsLogger                  $logger,
+        StoreManagerInterface              $storeManager,
+        ManagerInterface                   $eventManager,
+        Visibility                         $visibility,
+        Stock                              $deprecatedStockHelper,
+        Type                               $productType,
+        CollectionFactory                  $productCollectionFactory,
+        IndexNameFetcher                   $indexNameFetcher,
+        ReplicaManagerInterface            $replicaManager,
+        ProductInterfaceFactory            $productFactory,
+        ProductRecordBuilder               $productRecordBuilder,
+        FacetBuilder                       $facetBuilder,
+        IndexSettingsHandler               $indexSettingsHandler,
     ) {
         parent::__construct(
             $eavConfig,
             $configHelper,
-            $algoliaHelper,
+            $algoliaConnector,
+            $indexOptionsBuilder,
             $logger,
             $storeManager,
             $eventManager,
             $visibility,
             $deprecatedStockHelper,
-            $currencyManager,
             $productType,
             $productCollectionFactory,
-            $groupCollection,
-            $groupExcludedWebsiteRepository,
             $indexNameFetcher,
             $replicaManager,
             $productFactory,
-            $productRecordBuilder
+            $productRecordBuilder,
+            $facetBuilder,
+            $indexSettingsHandler
         );
     }
 
