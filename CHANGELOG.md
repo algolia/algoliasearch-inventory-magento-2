@@ -1,5 +1,8 @@
 # CHANGE LOG
 
+## 1.3.2
+- Fix compatibility with versions 3.16.3 and 3.17.3 of the Algolia_AlgoliaSearch module 
+
 ## 1.1.0
 - Fix compatibility with version 3.14.0 of the Algolia_AlgoliaSearch module (thanks @thomas-kl1)
 
