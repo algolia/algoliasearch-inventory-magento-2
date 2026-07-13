@@ -12,8 +12,10 @@ use Algolia\AlgoliaSearch\Service\Category\RecordBuilder as CategoryRecordBuilde
 use Algolia\AlgoliaSearch\Service\Product\RecordBuilder;
 use Algolia\AlgoliaSearchInventory\Helper\StockHelper;
 use Magento\Catalog\Model\Product;
+use Magento\Catalog\Model\Product\Gallery\ReadHandler as GalleryReadHandler;
 use Magento\Catalog\Model\Product\Url as ProductUrl;
 use Magento\Catalog\Model\Product\Visibility;
+use Magento\Catalog\Model\ResourceModel\Product as ProductResource;
 use Magento\CatalogInventory\Api\StockRegistryInterface;
 use Magento\Framework\Event\ManagerInterface;
 use Magento\Framework\Exception\InputException;
@@ -44,7 +46,9 @@ class InventoryProductRecordBuilder extends RecordBuilder
         ImageHelper                             $imageHelper,
         StockRegistryInterface                  $stockRegistry,
         PriceManager                            $priceManager,
-        ProductUrl                              $productUrl
+        ProductUrl                              $productUrl,
+        ProductResource                         $productResource,
+        GalleryReadHandler                      $galleryReadHandler
     ){
         parent::__construct(
             $eventManager,
@@ -58,7 +62,9 @@ class InventoryProductRecordBuilder extends RecordBuilder
             $imageHelper,
             $stockRegistry,
             $priceManager,
-            $productUrl
+            $productUrl,
+            $productResource,
+            $galleryReadHandler
         );
     }
 
