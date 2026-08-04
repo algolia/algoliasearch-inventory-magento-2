@@ -3,7 +3,7 @@
 ## 1.5.0
 - Updated for compatibility with 3.19.0
 - Removed the orphaned, deprecated `ProductHelperPlugin`, unregistered from DI since 1.2.0
-- Fixeed fatal `TypeError` on reindex caused by core module's `RecordBuilder::__construct()` signature change (added `ProductResource` and `GalleryReadHandler`); `InventoryProductRecordBuilder` now forwards both to the parent constructor
+- Fixed fatal `TypeError` on reindex caused by core module's `RecordBuilder::__construct()` signature change (added `ProductResource` and `GalleryReadHandler`); `InventoryProductRecordBuilder` now forwards both to the parent constructor
 
 ## 1.4.0
 - Fix compatibility with versions 3.16.3 and 3.17.3 of the Algolia_AlgoliaSearch module 
