@@ -15,6 +15,7 @@ use Algolia\AlgoliaSearch\Service\Product\RecordBuilder as ProductRecordBuilder;
 use Magento\Catalog\Api\Data\ProductInterfaceFactory;
 use Magento\Catalog\Model\Product\Type;
 use Magento\Catalog\Model\Product\Visibility;
+use Magento\Catalog\Model\ResourceModel\Product\Collection as ProductCollection;
 use Magento\Catalog\Model\ResourceModel\Product\CollectionFactory;
 use Magento\CatalogInventory\Helper\Stock;
 use Magento\Eav\Model\Config;
@@ -82,8 +83,10 @@ class InventoryProductHelper extends ProductHelper
     /**
      * Explicitly apply stock filter from Magento_Inventory module
      */
-    protected function addStockFilter($products, $storeId): void
-    {
+    protected function addStockFilter(
+        ProductCollection $products,
+        int               $storeId
+    ): void {
         try {
             $this->addStockDataToCollection->execute(
                 $products,
