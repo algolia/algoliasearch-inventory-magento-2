@@ -37,9 +37,13 @@ re-declaring and forwarding the parent's full constructor argument list:
 - `Helper/InventoryProductHelper.php` → `Algolia\AlgoliaSearch\Helper\Entity\ProductHelper`
 - `Service/Product/InventoryProductRecordBuilder.php` → `Algolia\AlgoliaSearch\Service\Product\RecordBuilder`
 
-A constructor signature change in either core parent is a fatal `TypeError` during reindex, not a
-test failure, and nothing in this repository will catch it. The most recent `CHANGELOG.md` entry is
-a case in point. Before any other work on a core version bump:
+A constructor signature change in a core parent is a fatal `TypeError` during reindex, not a logic
+bug, and coverage against it is uneven. `Test/Unit` instantiates the real `InventoryProductHelper`,
+so a parent change that invalidates its forwarded call errors every test in that file from `setUp`.
+Nothing instantiates `InventoryProductRecordBuilder`, so its forwarding is unverified: the 1.5.0
+`CHANGELOG.md` entry is exactly that gap. A parameter removed from a core parent throws nothing
+either way, because PHP ignores surplus arguments to a userland function. Run the unit suite on
+every core version bump, and before any other work:
 
 1. Diff both core parent constructors against the subclass constructors and mirror any change,
    forwarding every argument.
