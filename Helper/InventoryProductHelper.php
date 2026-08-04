@@ -28,6 +28,15 @@ use Magento\Store\Model\StoreManagerInterface;
  */
 class InventoryProductHelper extends ProductHelper
 {
+    /**
+     * Magento core's idempotency latch for the `stock_status_index` correlation name.
+     * This is not a semantic stock marker: `CatalogInventory\Helper\Stock::addIsInStockFilterToCollection()`
+     * guards on `hasFlag()`, so setting it only tells core's frontend `add_stock_information`
+     * plugin that the alias is already taken. Algolia keeps full control of which products
+     * are filtered. Core exposes no public constant for this key.
+     */
+    protected const HAS_STOCK_STATUS_FILTER = 'has_stock_status_filter';
+
     public function __construct(
         protected AddStockDataToCollection $addStockDataToCollection,
         protected StockHelper              $localStockHelper,
@@ -81,6 +90,7 @@ class InventoryProductHelper extends ProductHelper
                 !$this->configHelper->getShowOutOfStock($storeId),
                 $this->localStockHelper->getStockId($storeId)
             );
+            $products->setFlag(self::HAS_STOCK_STATUS_FILTER, true);
         } catch (LocalizedException $e) {
             $this->logger->error("Error applying MSI stock filter:" . $e->getMessage());
         }
