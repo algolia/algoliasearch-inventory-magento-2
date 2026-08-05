@@ -15,7 +15,7 @@ This Algolia_AlgoliaSearchInventory is a community-developed module to provide c
 | ~[3.14.0](https://github.com/algolia/algoliasearch-magento-2/releases/tag/3.14.0)                                                                                                    | ~1.1.0                     |
 | ~[3.15.0](https://github.com/algolia/algoliasearch-magento-2/releases/tag/3.15.0)                                                                                                    | ~1.2.0                     |
 | \>=[3.16.0](https://github.com/algolia/algoliasearch-magento-2/releases/tag/3.16.0) <3.16.3, \>=[3.17.0](https://github.com/algolia/algoliasearch-magento-2/releases/tag/3.17.0) <3.17.3 | ~1.3.1                     |
-| \>=[3.16.3](https://github.com/algolia/algoliasearch-magento-2/releases/tag/3.16.3), \>=[3.17.3](https://github.com/algolia/algoliasearch-magento-2/releases/tag/3.17.3), <3.19.0        | ~1.4.0                     |
+| \>=[3.16.3](https://github.com/algolia/algoliasearch-magento-2/releases/tag/3.16.3) <3.17.0, \>=[3.17.3](https://github.com/algolia/algoliasearch-magento-2/releases/tag/3.17.3) <3.19.0 | ~1.4.1                     |
 | \>=[3.19.0](https://github.com/algolia/algoliasearch-magento-2/releases/tag/3.19.0)                                                                                                  | ~1.5.0                     |
 
 ## Installation
