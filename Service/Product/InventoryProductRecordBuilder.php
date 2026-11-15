@@ -71,19 +71,23 @@ class InventoryProductRecordBuilder extends RecordBuilder
     /**
      * Retrieve qty from MSI by stock ID
      * @throws NoSuchEntityException
-     * @throws InputException
      * @throws LocalizedException
      */
     protected function addStockQty($defaultData, $customData, $additionalAttributes, Product $product) {
         if (!isset($defaultData[self::ATTR_STOCK_QTY])
             && $this->isAttributeEnabled($additionalAttributes, self::ATTR_STOCK_QTY)) {
-            $customData[self::ATTR_STOCK_QTY] = !!$customData[self::ATTR_IN_STOCK]
-                 ? (int) $this->salableQty->execute(
-                        $product->getSku(),
-                        $this->stockHelper->getStockId($product->getStoreId())
-                    )
-                : 0 // Avoids error: Can't check requested quantity for products without Source Items support.
-            ;
+            try {
+                $customData[self::ATTR_STOCK_QTY] = !!$customData[self::ATTR_IN_STOCK]
+                     ? (int) $this->salableQty->execute(
+                            $product->getSku(),
+                            $this->stockHelper->getStockId($product->getStoreId())
+                        )
+                    : 0 // Avoids error: Can't check requested quantity for products without Source Items support.
+                ;
+            } catch (InputException) {
+                // Product types without Source Items support (configurable, bundle, grouped) have no MSI qty
+                return parent::addStockQty($defaultData, $customData, $additionalAttributes, $product);
+            }
         }
 
         return $customData;
